@@ -1,0 +1,19 @@
+{
+  "name": "parse-dances",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js --ignore '/*.json' '*.png'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "nodemon": "^2.0.1",
+    "open": "^7.0.0",
+    "ora": "^4.0.3",
+    "prompts": "^2.3.0"
+  }
+}
