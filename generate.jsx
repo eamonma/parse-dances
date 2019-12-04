@@ -35,7 +35,6 @@ function saveTiff(name) {
     const file = new File(doc.path + "/" + name + ".tiff")
 
     const opts = new PNGSaveOptions()
-    // opts.quality = 
 
     doc.saveAs(file, opts, true)
 }
