@@ -69,14 +69,32 @@ const ora = require("ora");
                 if (e) {
                     console.log(chalk.red.bold("Error"))
                 } else {
-                    console.log(chalk.green.bold("Success, generating images in Photoshop"))
-                    const openingInPhotoshopSpinner = ora("Opening...").start()
-                    await open("./generate.jsx", {
-                        app: "adobe photoshop cc 2015"
+                    prompt({
+                        type: "toggle",
+                        name: "open",
+                        message: "Open in Photoshop?",
+                        initial: true,
+                        active: "Yes",
+                        inactive: "No"
+                    }).then(async (e) => {
+                        if (!e.open) {
+                            return false
+                        }
+                        prompt({
+                            type: "text",
+                            name: "version",
+                            message: "What version of Photoshop CC?",
+                            initial: "2015"
+                        }).then(async (e) => {
+                            const openingInPhotoshopSpinner = ora("Opening...").start()
+                            await open("./generate.jsx", {
+                                app: `adobe photoshop cc ${e.version}`
+                            })
+                            openingInPhotoshopSpinner.stop()
+                            console.log(chalk.greenBright("Done."))
+                            open("./output")
+                        })
                     })
-                    openingInPhotoshopSpinner.stop()
-                    console.log(chalk.greenBright("Done."))  
-                    open("./output")
                 }
             })
         })
